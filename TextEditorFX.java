@@ -55,48 +55,54 @@ public class TextEditorFX extends Application {
 		//Anonymous Event handler for the "open..." menu item.
 		open.setOnAction((ActionEvent event) -> {
 
-				//Create a new FileChooser and assign a new file to the FileChooser dialog.
-				FileChooser myFile = new FileChooser();
-				File openFile = myFile.showOpenDialog(stage);
-				
-				//if the file is not null, empty the TextArea, read in each line 
-				//from the file with the Scanner. 
-				if(openFile != null) {
-					textEdit.setText(null);
-					try {
-						Scanner input = new Scanner(openFile);
-						
-						while(input.hasNext()) {
-							textEdit.appendText(input.nextLine() + "\n");
-						}
-						input.close();
-					}catch(IOException e) {
-						System.out.println("An error occured.");
+			//Create a new FileChooser and assign a new file to the FileChooser dialog.
+			FileChooser myFile = new FileChooser();
+			File openFile = myFile.showOpenDialog(stage);
+
+			//if the file is not null, empty the TextArea, read in each line
+			//from the file with the Scanner.
+			if(openFile != null) {
+
+				textEdit.setText(null);
+				try {
+
+					Scanner input = new Scanner(openFile);
+					while(input.hasNext()) {
+						textEdit.appendText(input.nextLine() + "\n");
 					}
+					input.close();
+
+				}catch(IOException e) {
+						System.out.println("An error occured.");
 				}
+
+			}
 
 		});
 		
 		//Anonymous Event handler for the "save..." menu item.
 		save.setOnAction((ActionEvent event) -> {
 
-				
-				//Create a new FileChooser and assign a new file to the FileChooser dialog.
-				FileChooser myFile = new FileChooser();
-				File saveFile = myFile.showSaveDialog(stage);
-				
-				//if the file is not null, create a new file if it does not exist.
-				//print the contents of the textArea to the file. Close the output.
-				if(saveFile != null) {
-					try {
-						saveFile.createNewFile();
-						PrintWriter output = new PrintWriter(saveFile);
-						output.print(textEdit.getText());
-						output.close();
-					}catch(IOException e) {
-						System.out.println("An error occured.");
-					}
+			//Create a new FileChooser and assign a new file to the FileChooser dialog.
+			FileChooser myFile = new FileChooser();
+			File saveFile = myFile.showSaveDialog(stage);
+
+			//if the file is not null, create a new file if it does not exist.
+			//print the contents of the textArea to the file. Close the output.
+			if(saveFile != null) {
+
+				try {
+
+					saveFile.createNewFile();
+					PrintWriter output = new PrintWriter(saveFile);
+					output.print(textEdit.getText());
+					output.close();
+
+				}catch(IOException e) {
+					System.out.println("An error occured.");
 				}
+
+			}
 
 		});
 		
