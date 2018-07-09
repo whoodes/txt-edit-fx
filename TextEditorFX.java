@@ -28,44 +28,52 @@ import javax.swing.*;
  */
 public class TextEditorFX extends Application {
 
-	//Create keyboard shortcuts for the menu items.
-	public static final KeyCombination saveShortcut =
+	//Keyboard shortcut for saving a file//
+	private static final KeyCombination saveShortcut =
 			new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN);
-	
-	public static final KeyCombination openShortcut = 
+
+	//Keyboard shortcut for opening a file//
+	private static final KeyCombination openShortcut =
 			new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN);
-	
+
+	/**
+	 * Implementing the start method
+	 *
+	 * @param stage Stage
+	 */
 	public void start(Stage stage) {
 
-		//Create a TextArea and turn on the WrapText function.
+		//Create a TextArea and turn on the WrapText function//
 		TextArea textEdit = new TextArea();
 		textEdit.setWrapText(true);
 		
-		//Create a menu bar, a file menu, and open and save menu items.
+		//Create a menu bar//
 		MenuBar mainMenu = new MenuBar();
 		final Menu file = new Menu("File");
-		
+
+		//Create an "Open" item, set the shortcut//
 		MenuItem open = new MenuItem("Open...\t\t\t\t");
 		open.setAccelerator(openShortcut);
-		
+
+		//Create a "Save" item, set the shortcut//
 		MenuItem save = new MenuItem("Save...");
 		save.setAccelerator(saveShortcut);
-		
-		
-		//Anonymous Event handler for the "open..." menu item.
+
+		//Setting the action for "Open" event//
 		open.setOnAction((ActionEvent event) -> {
 
-			//Create a new FileChooser and assign a new file to the FileChooser dialog.
+			//Create a new FileChooser and assign a new file to the FileChooser dialog//
 			FileChooser myFile = new FileChooser();
 			File openFile = myFile.showOpenDialog(stage);
 
-			//if the file is not null, empty the TextArea, read in each line
-			//from the file with the Scanner.
+			//openFile must exist//
 			if(openFile != null) {
 
+				//Clear the textView//
 				textEdit.setText(null);
 				try {
 
+					//While the scanner has input, read it to the textView//
 					Scanner input = new Scanner(openFile);
 					while(input.hasNext()) {
 						textEdit.appendText(input.nextLine() + "\n");
@@ -80,15 +88,14 @@ public class TextEditorFX extends Application {
 
 		});
 		
-		//Anonymous Event handler for the "save..." menu item.
+		//Setting the action for "Save" event//
 		save.setOnAction((ActionEvent event) -> {
 
-			//Create a new FileChooser and assign a new file to the FileChooser dialog.
+			//Create a new FileChooser and assign a new file to the FileChooser dialog//
 			FileChooser myFile = new FileChooser();
 			File saveFile = myFile.showSaveDialog(stage);
 
-			//if the file is not null, create a new file if it does not exist.
-			//print the contents of the textArea to the file. Close the output.
+			//saveFile must exist//
 			if(saveFile != null) {
 
 				try {
