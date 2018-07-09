@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * Core Concept: the ability to perform file I/O using javafx
  * Date: 04/08/18
  */
-public class Assignment13 extends Application {
+public class TextEditorFX extends Application {
 
 	//Create keyboard shortcuts for the menu items.
 	public static final KeyCombination saveShortcut =
