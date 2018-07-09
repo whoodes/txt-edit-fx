@@ -18,9 +18,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+
 /*
  * Wyatt Hoodes
- * +Assignment13
+ * +TextEditorFX
  * Core Concept: the ability to perform file I/O using javafx
  * Date: 04/08/18
  */
@@ -51,19 +53,18 @@ public class TextEditorFX extends Application {
 		
 		
 		//Anonymous Event handler for the "open..." menu item.
-		open.setOnAction(new EventHandler <ActionEvent>() {
-			public void handle(ActionEvent actionEvent) {
-				
+		open.setOnAction((ActionEvent event) -> {
+
 				//Create a new FileChooser and assign a new file to the FileChooser dialog.
 				FileChooser myFile = new FileChooser();
-				File file = myFile.showOpenDialog(stage);
+				File openFile = myFile.showOpenDialog(stage);
 				
 				//if the file is not null, empty the TextArea, read in each line 
 				//from the file with the Scanner. 
-				if(file != null) {
+				if(openFile != null) {
 					textEdit.setText(null);
 					try {
-						Scanner input = new Scanner(file);
+						Scanner input = new Scanner(openFile);
 						
 						while(input.hasNext()) {
 							textEdit.appendText(input.nextLine() + "\n");
@@ -73,30 +74,30 @@ public class TextEditorFX extends Application {
 						System.out.println("An error occured.");
 					}
 				}
-			}
+
 		});
 		
 		//Anonymous Event handler for the "save..." menu item.
-		save.setOnAction(new EventHandler <ActionEvent>() {
-			public void handle(ActionEvent actionEvent) {
+		save.setOnAction((ActionEvent event) -> {
+
 				
 				//Create a new FileChooser and assign a new file to the FileChooser dialog.
 				FileChooser myFile = new FileChooser();
-				File file = myFile.showSaveDialog(stage);
+				File saveFile = myFile.showSaveDialog(stage);
 				
 				//if the file is not null, create a new file if it does not exist.
 				//print the contents of the textArea to the file. Close the output.
-				if(file != null) {
+				if(saveFile != null) {
 					try {
-						file.createNewFile();
-						PrintWriter output = new PrintWriter(file);
+						saveFile.createNewFile();
+						PrintWriter output = new PrintWriter(saveFile);
 						output.print(textEdit.getText());
 						output.close();
 					}catch(IOException e) {
 						System.out.println("An error occured.");
 					}
 				}
-			}
+
 		});
 		
 		//Add the items to the file menu, add the file menu to the bar, display the menu bar
