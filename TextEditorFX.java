@@ -18,8 +18,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-
 /*
  * Wyatt Hoodes
  * +TextEditorFX
