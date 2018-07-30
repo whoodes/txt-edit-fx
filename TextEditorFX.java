@@ -60,7 +60,7 @@ public class TextEditorFX extends Application {
 		save.setAccelerator(saveShortcut);
 
 		//Setting the action for "Open" event//
-		open.setOnAction((ActionEvent event) -> {
+        open.setOnAction((ActionEvent event) -> {
 
 			//Create a new FileChooser and assign a new file to the FileChooser dialog//
 			FileChooser myFile = new FileChooser();
@@ -81,7 +81,7 @@ public class TextEditorFX extends Application {
 					input.close();
 
 				}catch(IOException e) {
-						System.out.println("An error occured.");
+						System.out.println("An error occurred.");
 				}
 
 			}
